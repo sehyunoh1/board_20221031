@@ -2,6 +2,7 @@ package com.its.board.DTO;
 
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,7 +17,7 @@ public class BoardDTO {
    private String BoardPass;
    private String BoardTitle;
    private String BoardContents;
-   private LocalDateTime BoardCreatedDate;
+   private Timestamp BoardCreatedDate;
    private int BoardHits;
 
 }

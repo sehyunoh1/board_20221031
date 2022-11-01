@@ -19,7 +19,22 @@ public class BoardService {
     }
     public List<BoardDTO> List(){ return boardRepository.List();}
 
-    public BoardDTO findbyId(Long boardId){ return boardRepository.findbyId(boardId);}
-
+    public BoardDTO findbyId(Long boardId){
+        boardRepository.Hits(boardId);
+        BoardDTO boardDTO=  boardRepository.findbyId(boardId);
+        return boardDTO;
+    }
+    public BoardDTO deleteCk(Long boardId){
+        return boardRepository.deleteCk(boardId);
+    }
     public void delete(Long boardId){boardRepository.delete(boardId);}
+
+    public boolean update (BoardDTO boardDTO){
+      int result =  boardRepository.update(boardDTO);
+        if(result>0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

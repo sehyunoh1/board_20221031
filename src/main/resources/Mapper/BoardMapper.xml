@@ -14,9 +14,19 @@
     <select id="findbyId" parameterType="Long" resultType="board">
     select * from board_table where boardId=#{boardId};
     </select>
+    <update id="boardHits" parameterType="Long">
+        update board_table set boardHits=boardHits+1 where boardId=#{boardId};
+    </update>
+    <select id="deleteCk" parameterType="Long" resultType="board">
+        select boardPass from board_table where boardId=#{boardId};
+    </select>
     <delete id="delete" parameterType="Long">
-    delete  from board_table where boardId =#{boardId};
+    delete  from board_table where boardId =#{BoardId};
     </delete>
+    <update id="update" parameterType="board">
+       update board_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where boardId=#{BoardId}
+
+    </update>
 </mapper>
 
 
