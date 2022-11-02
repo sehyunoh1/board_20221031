@@ -10,10 +10,7 @@
         width: 300px;
         font-size: 30px;
         text-align: center;
-      margin: auto
-
-    ;
-
+        margin-top:50px;
     }
 </style>
 <html>
@@ -27,7 +24,6 @@
         <input type="button" value="삭제" onclick="deleteck(${board.boardPass})" class="btn btn-danger">
     </form>
 </div>
-
 </body>
 <script>
     const deleteck = () => {
