@@ -18,7 +18,7 @@
     <select id="findbyId" parameterType="Long" resultType="board">
     select * from board_table  where boardId=#{boardId};
     </select>
-    <select id="Board.fingbyIdFile" resultType="board" parameterType="Long">
+    <select id="findbyIdFile" resultType="board" parameterType="Long">
         select * from board_table b, board_file_table bf where b.boardId = bf.boardId and b.boardId=#{boardId};
     </select>
     <update id="boardHits" parameterType="Long">
