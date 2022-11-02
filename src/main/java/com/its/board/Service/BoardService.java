@@ -35,10 +35,12 @@ public class BoardService {
             boardDTO.setStoredFileName(storedFileName);//4.
             String savePath ="D:\\spring_img\\"+ storedFileName;//5.
             boardFile.transferTo(new File(savePath));//6.
+            boardDTO.setFileAttached(1);
             BoardDTO saveBoard = boardRepository.save(boardDTO);//7.
             boardRepository.saveFileName(saveBoard);
         }else {
             System.out.println("파일없음.");
+            boardDTO.setFileAttached(0);
             boardRepository.save(boardDTO);
         }
 
