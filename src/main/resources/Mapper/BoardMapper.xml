@@ -18,7 +18,7 @@
         update board_table set boardHits=boardHits+1 where boardId=#{boardId};
     </update>
     <select id="deleteCk" parameterType="Long" resultType="board">
-        select boardPass from board_table where boardId=#{boardId};
+        select * from board_table where boardId=#{boardId};
     </select>
     <delete id="delete" parameterType="Long">
     delete  from board_table where boardId =#{BoardId};

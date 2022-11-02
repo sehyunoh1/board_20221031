@@ -21,7 +21,7 @@
 <body>
 <form action="/board/delete" method="get" name="passck">
     <input type="text" placeholder="비밀번호 입력" name="PasswordCk" id="PasswordCk" class="form-control">
-    <input type="button" value="삭제" onclick="deleteck()" class="btn btn-danger">
+    <input type="button" value="삭제" onclick="deleteck(${board.boardPass})" class="btn btn-danger">
 </form>
 </body>
 <script>
@@ -29,6 +29,7 @@
       const PassDB='${board.boardPass}';
       const Pass=document.getElementById("PasswordCk").value;
       console.log(PassDB)
+        console.log('${board.boardId}');
       if(Pass==PassDB){
           location.href="/board/delete?boardId="+'${board.boardId}';
       }else{
