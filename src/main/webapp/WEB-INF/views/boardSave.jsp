@@ -20,11 +20,12 @@
 <body>
 <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
   <div class="container" id="main">
-    <form action="/board/save" method="post" name="saveform">
+    <form action="/board/save" method="post" name="saveform" enctype="multipart/form-data">
       <input type="text" id="Writer" name="boardWriter" class="form-control" placeholder="작성자">
       <input type="text" id="Pass" name="boardPass" class="form-control" placeholder="비밀번호">
       <input type="text" id="Title" name="boardTitle" class="form-control" placeholder="글 제목">
       <textarea id="Contents" name="boardContents" class="form-control" placeholder="내용을 입력하세요" cols="30" rows=10"></textarea>
+      <input type="file" class="form-control" name="boardFile">
       <input type="button" value="제출하기" onclick="save()" class="btn btn-primary">
     </form>
   </div>

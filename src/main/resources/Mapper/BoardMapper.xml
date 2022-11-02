@@ -4,15 +4,19 @@
 
 
 <mapper namespace="Board">
-    <insert id="save" parameterType="board">
+    <insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="boardId">
     insert into board_table(boardWriter,boardPass,boardTitle,boardContents)
     values (#{boardWriter},#{boardPass},#{boardTitle},#{boardContents})
+    </insert>
+    <insert id="saveFile" parameterType="board">
+        insert into board_file_table(originalFileName,storedFileName,boardId)
+            values (#{originalFileName},#{storedFileName},#{boardId})
     </insert>
     <select id="List" resultType="board">
     select * from board_table;
     </select>
     <select id="findbyId" parameterType="Long" resultType="board">
-    select * from board_table where boardId=#{boardId};
+    select * from board_table b, board_file_table bf where b.boardId=bf.boardId and b.boardId=#{boardId};
     </select>
     <update id="boardHits" parameterType="Long">
         update board_table set boardHits=boardHits+1 where boardId=#{boardId};
@@ -21,7 +25,7 @@
         select * from board_table where boardId=#{boardId};
     </select>
     <delete id="delete" parameterType="Long">
-    delete  from board_table where boardId =#{BoardId};
+    delete  from board_table where boardId =#{boardId};
     </delete>
     <update id="update" parameterType="board">
        update board_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where boardId=#{BoardId}

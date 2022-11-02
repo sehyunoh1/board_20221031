@@ -35,6 +35,12 @@
                 <td>${board.boardContents}</td>
             </tr>
             <tr>
+                <th>file</th>
+                <td><img src="${pageContext.request.contextPath}/upload/${board.storedFileName}"
+                         alt="" width="100" height="100"> <%-- 상대경로로 경로 찾아가기--%>
+                </td>
+            </tr>
+            <tr>
                 <th>작성시간</th>
                 <td>${board.boardCreatedDate}</td>
             </tr>

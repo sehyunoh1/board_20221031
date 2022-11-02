@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 @Controller
 @RequestMapping("/board")
@@ -24,13 +25,9 @@ public class BoardController {
     public String saveform(){ return "boardSave";}
 
     @PostMapping("/save")
-    public String save(@ModelAttribute BoardDTO boardDTO){
-    boolean saveResult = boardService.save(boardDTO);
-    if(saveResult ){
+    public String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
+     boardService.save(boardDTO);
         return "redirect:/board/";
-    }else {
-        return "savefail";
-    }
     }
 
     @GetMapping("/")
@@ -43,6 +40,7 @@ public class BoardController {
     public String findbyId(@RequestParam("boardId") Long boardId, Model model){
         BoardDTO boardDTO= boardService.findbyId(boardId);
         model.addAttribute("board",boardDTO);
+        System.out.println("조회: boardDTO = " + boardDTO);
         return "boardDetail";
     }
     @GetMapping("/deleteCheck")
@@ -66,9 +64,10 @@ public class BoardController {
     @PostMapping("/update")
     public String update(@ModelAttribute BoardDTO boardDTO){
       boolean result = boardService.update(boardDTO);
-        System.out.println(result);
+      // BoardDTO DTO= boardService.findById(boardDTO.getId());
+      // model.addAttribute("board",DTO) 조회수가 늘어나지 않는 방법;
       if(result) {
-          return "redirect:/board?boardId=" + boardDTO.getBoardId();
+          return "redirect:/board?boardId=" + boardDTO.getBoardId(); //조회수가 하나 늘어나는 방법
       }else {
           return "boardDetail";
       }

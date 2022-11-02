@@ -12,8 +12,15 @@ public class BoardRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
-    public int save(BoardDTO boardDTO){return sql.insert("Board.save",boardDTO);}
-
+    public BoardDTO save(BoardDTO boardDTO){
+        System.out.println("insert 전 boardDTO = " + boardDTO);
+        sql.insert("Board.save",boardDTO);
+        System.out.println("insert 후 boardDTO = " + boardDTO);
+        return boardDTO;
+    }
+    public void saveFileName(BoardDTO boardDTO) {
+        sql.insert("Board.saveFile", boardDTO);
+    }
     public List<BoardDTO> List (){return sql.selectList("Board.List");}
 
     public BoardDTO findbyId(Long boardId){
@@ -26,4 +33,6 @@ public class BoardRepository {
     public BoardDTO deleteCk(Long boardId){return sql.selectOne("Board.deleteCk",boardId);}
 
     public int update(BoardDTO boardDTO){ return sql.update("Board.update",boardDTO);}
+
+
 }
