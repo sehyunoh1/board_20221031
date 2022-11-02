@@ -10,18 +10,32 @@
     <style>
       *{font-family:'Jua', sans-serif;  }
       #main {
-        width: 300px;
-        font-size: 30px;
+        font-size: 60px;
         text-align: center;
-        margin: auto;
         margin-top: 50px;
+      }
+      button{
+        width: 300px;
+        height: 200px;
+      }
+      #list{
+        margin-left: 50px;
       }
     </style>
   </head>
   <body>
+  <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
   <div class="container" id="main">
-  <a href="/board/save">글 작성</a>
-  <a href="/board/">글 목록</a>
+   <button class="btn btn-primary" onclick="saveFn()">글 작성</button>
+   <button class="btn btn-warning" onclick="listFn()" id="list">글 목록</button>
   </div>
   </body>
+  <script>
+    const saveFn = () => {
+      location.href="/board/save";
+    }
+    const listFn = () => {
+      location.href="/board/";
+    }
+  </script>
 </html>

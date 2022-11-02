@@ -17,13 +17,32 @@
 <body>
 <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
     <div class="container" name="update">
-        <h2>조회결과</h2>
-        <h5>글 번호: ${board.boardId}</h5>
-        <h5>작성자 : ${board.boardWriter}</h5>
-        <h5>제목 : ${board.boardTitle}</h5>
-        <h5>내용 : ${board.boardContents}</h5>
-        <h5>작성시간 : ${board.boardCreatedDate}</h5>
-        <h5>조회수 : ${board.boardHits}</h5>
+        <table class="table table-hover">
+            <tr>
+                <th>글번호</th>
+                <td>${board.boardId}</td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td>${board.boardWriter}</td>
+            </tr>
+                <tr>
+                <th>제목</th>
+                <td>${board.boardTitle}</td>
+                </tr>
+            <tr>
+                <th>내용</th>
+                <td>${board.boardContents}</td>
+            </tr>
+            <tr>
+                <th>작성시간</th>
+                <td>${board.boardCreatedDate}</td>
+            </tr>
+            <tr>
+                <th>조회수</th>
+                <td>${board.boardHits}</td>
+            </tr>
+    </table>
         <button onclick="listFn()" class="btn btn-primary" >목록</button>
         <button onclick="updateFn()" class="btn btn-warning" >수정</button>
         <button onclick="deleteFn()" class="btn btn-danger" >삭제</button>

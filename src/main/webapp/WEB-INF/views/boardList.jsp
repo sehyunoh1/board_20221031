@@ -26,8 +26,9 @@
 <div id="list" class="container">
     <table class="table table-striped table-hover text-center">
         <tr>
-            <th>제목</th>
+            <th>글 번호</th>
             <th>작성자</th>
+            <th>제목</th>
             <th>작성 시간</th>
             <th>조회수</th>
         </tr>
@@ -36,9 +37,10 @@
                 <td>
                     ${board.boardId}
                 </td>
-                <td><a href="/board?boardId=${board.boardId}">'${board.boardWriter}'</td></a>
+                <td>${board.boardWriter}</td>
+                <td><a href="/board?boardId=${board.boardId}">${board.boardTitle}</a></td>
                 <td>
-                        <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate>
+                    <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate>
                 </td>
                 <td >${board.boardHits}</td>
             </tr>
@@ -46,5 +48,4 @@
     </table>
 </div>
 </body>
-
 </html>

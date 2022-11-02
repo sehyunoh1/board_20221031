@@ -10,7 +10,7 @@
   <style>
     *{font-family:'Jua', sans-serif;  }
     #main {
-      width: 300px;
+      width: 600px;
       font-size: 20px;
       margin: auto;
       margin-top: 50px;

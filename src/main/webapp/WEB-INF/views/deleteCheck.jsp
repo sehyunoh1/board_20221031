@@ -10,8 +10,10 @@
         width: 300px;
         font-size: 30px;
         text-align: center;
-        margin: auto;
-        margin-top: 50px;
+      margin: auto
+
+    ;
+
     }
 </style>
 <html>
@@ -19,10 +21,13 @@
     <title>비밀번호 확인</title>
 </head>
 <body>
-<form action="/board/delete" method="get" name="passck">
-    <input type="text" placeholder="비밀번호 입력" name="PasswordCk" id="PasswordCk" class="form-control">
-    <input type="button" value="삭제" onclick="deleteck(${board.boardPass})" class="btn btn-danger">
-</form>
+<div id="main">
+    <form action="/board/delete" method="get" name="passck">
+        <input type="text" placeholder="비밀번호 입력" name="PasswordCk" id="PasswordCk" class="form-control">
+        <input type="button" value="삭제" onclick="deleteck(${board.boardPass})" class="btn btn-danger">
+    </form>
+</div>
+
 </body>
 <script>
     const deleteck = () => {
