@@ -2,6 +2,7 @@ package com.its.board.controller;
 
 import com.google.protobuf.RpcUtil;
 import com.its.board.DTO.BoardDTO;
+import com.its.board.DTO.PageDTO;
 import com.its.board.Service.BoardService;
 import com.its.board.Repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,19 @@ public class BoardController {
         model.addAttribute("boardList",boardList);
         return "boardList";
     }
+    //페이징 목록
+    @GetMapping("/paging")
+    public  String paging(Model model,
+                          @RequestParam(value = "page", required = false,defaultValue = "1") int page){
+        //해당 페이지에서 보여줄 글 목록
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        //하단 페이지 번호 표현을 위한 데이터
+        PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList",pagingList);
+        model.addAttribute("paging",pageDTO);
+        return "boardPaging";
+    }
+
     @GetMapping // 파라미터가 있는경우 안적어도 됨.
     public String findbyId(@RequestParam("boardId") Long boardId, Model model){
         BoardDTO boardDTO= boardService.findbyId(boardId);

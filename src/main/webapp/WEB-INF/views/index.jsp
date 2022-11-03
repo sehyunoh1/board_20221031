@@ -28,6 +28,7 @@
   <div class="container" id="main">
    <button class="btn btn-primary" onclick="saveFn()">글 작성</button>
    <button class="btn btn-warning" onclick="listFn()" id="list">글 목록</button>
+    <a href="/board/paging">페이징 목록</a>
   </div>
   </body>
   <script>

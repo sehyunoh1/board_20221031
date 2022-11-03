@@ -6,6 +6,7 @@ import com.its.board.DTO.BoardDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardRepository {
@@ -38,4 +39,11 @@ public class BoardRepository {
     public int update(BoardDTO boardDTO){ return sql.update("Board.update",boardDTO);}
 
 
+    public List<BoardDTO> pagingList(Map<String, Integer> pagingParams) {
+        return sql.selectList("Board.pagingList",pagingParams);
+    }
+
+    public int boardCount (){
+        return sql.selectOne("Board.boardCount");
+    }
 }
