@@ -51,9 +51,11 @@ public class BoardController {
     }
 
     @GetMapping // 파라미터가 있는경우 안적어도 됨.
-    public String findbyId(@RequestParam("boardId") Long boardId, Model model){
+    public String findbyId(@RequestParam("boardId") Long boardId, Model model,
+                           @RequestParam(value = "page", required = false,defaultValue = "1") int page){
         BoardDTO boardDTO= boardService.findbyId(boardId);
         model.addAttribute("board",boardDTO);
+        model.addAttribute("page",page);
         System.out.println("조회: boardDTO = " + boardDTO);
         return "boardDetail";
     }

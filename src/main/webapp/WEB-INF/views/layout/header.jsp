@@ -1,47 +1,61 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
-  Date: 2022-11-01
-  Time: 오후 1:46
-  To change this template use File | Settings | File Templates.
---%>
+@@ -15,27 +16,46 @@--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
   <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
-<header class="p-3 mb-3 border-bottom">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-      </a>
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+            </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="/board/save" class="nav-link px-2 link-dark">글작성</a></li>
-        <li><a href="/board/" class="nav-link px-2 link-dark">글목록</a></li>
-      </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="/board/save" class="nav-link px-2 text-white">글작성</a></li>
+                <li><a href="/board/" class="nav-link px-2 text-white">글목록</a></li>
+<%--                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>--%>
+<%--                <li><a href="#" class="nav-link px-2 text-white">About</a></li>--%>
+<%--                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>--%>
+<%--                <li><a href="#" class="nav-link px-2 text-white">About</a></li>--%>
+</ul>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-      </form>
+<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+  <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+         aria-label="Search">
+</form>
 
-      <div class="dropdown text-end">
-        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-        </a>
-        <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="text-end">
+
+  <c:choose>
+    <c:when test="${sessionScope.loginEmail != null}">
+      <span>${sessionScope.loginEmail}님</span>
+      <button type="button" onclick="logout()" class="btn btn-outline-light me-2">Logout</button>
+    </c:when>
+    <c:otherwise>
+      <button type="button" onclick="login()" class="btn btn-outline-light me-2">Login</button>
+      <button type="button" class="btn btn-warning">Sign-up</button>
+    </c:otherwise>
+  </c:choose>
+</div>
+</div>
+</div>
 </header>
 </body>
+<script>
+  const login = () => {
+    location.href = "/login";
+  }
+  const logout = () => {
+    location.href = "/logout";
+  }
+</script>
 </html>

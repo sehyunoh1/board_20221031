@@ -84,7 +84,7 @@ public class BoardService {
          page = 2, 3
          page = 3, 6
        */
-        int pagingStart = (page-1) * PagingConst.PAGE_LIMIT;
+        int pagingStart = (page-1) * PagingConst.PAGE_LIMIT; // 각 페이지별 첫번째로 나오는 페이지 번호를 인덱스 번호 처럼 계산
         Map<String, Integer> pagingParams = new HashMap<>();
         pagingParams.put("start",pagingStart);
         pagingParams.put("Limit",PagingConst.PAGE_LIMIT);

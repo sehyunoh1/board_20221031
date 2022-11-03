@@ -1,48 +1,39 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>페이지 목록</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>boardList.jsp</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <style>
-        *{font-family:'Jua', sans-serif;  }
         #list {
             width: 800px;
-            font-size: 30px;
-            text-align: center;
-            margin: auto;
             margin-top: 50px;
         }
-
     </style>
 </head>
 <body>
 <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
-<div id="list" class="container">
+<div class="container" id="list">
     <table class="table table-striped table-hover text-center">
         <tr>
-            <th>글 번호</th>
-            <th>작성자</th>
-            <th>제목</th>
-            <th>작성 시간</th>
-            <th>조회수</th>
+            <th>id</th>
+            <th>title</th>
+            <th>writer</th>
+            <th>date</th>
+            <th>hits</th>
         </tr>
         <c:forEach items="${boardList}" var="board">
             <tr>
+                <td>${board.boardId}</td>
                 <td>
-                        ${board.boardId}
+                    <a href="/board?boardId=${board.boardId}&page=${paging.page}">${board.boardTitle}</a>
                 </td>
                 <td>${board.boardWriter}</td>
-                <td><a href="/board?boardId=${board.boardId}">${board.boardTitle}</a></td>
                 <td>
                     <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                 </td>
-                <td >${board.boardHits}</td>
+                <td>${board.boardHits}</td>
             </tr>
         </c:forEach>
     </table>
