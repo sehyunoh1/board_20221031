@@ -19,7 +19,6 @@ import java.util.List;
 public class BoardController {
    @Autowired
     private BoardService boardService;
-   private  BoardRepository boardRepository;
 
     @GetMapping("/save")
     // @RequestMapping(value="/save",method=RequestMethod.POST)

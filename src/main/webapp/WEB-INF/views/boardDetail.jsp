@@ -8,10 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="/resources/js/jquery.js"></script>
     <style>
         *{font-family:'Jua', sans-serif;  }
         button{
             width: 100px;
+        }
+        #comment-write{
+            width:600px;
         }
     </style>
 </head>
@@ -56,6 +60,19 @@
         <button onclick="updateFn()" class="btn btn-warning" >수정</button>
         <button onclick="deleteFn()" class="btn btn-danger" >삭제</button>
     </div>
+    <div class="container mt-5">
+        <div id="comment-write" class="input-group mb-3">
+            <div class="form-floating">
+                <input type="text" id="commentWriter" class="form-control" placeholder="작성자">
+                <label for="commentWriter">작성자</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" id="commentContents" class="form-control" placeholder="작성자">
+                <label for="commentContents">내용</label>
+            </div>
+            <div id="comment-write-btn" class="btn btn-secondary" onclick="commentWrite()">댓글작성</div>
+        </div>
+    </div>
 </body>
 <script>
     const listFn = () => {
@@ -67,6 +84,26 @@
     }
     const deleteFn = () => {
        location.href="/board/deleteCheck?boardId="+${board.boardId};
+    }
+    const commentWrite = () => {
+      const commentWriter = document.getElementById("commentWriter").value;
+      const commentContents = document.getElementById("commentContents").value;
+      const boardId = ${board.boardId};
+          $.ajax({
+            type:"post",
+            url:"/comment/save",
+            data:{commentWriter : commentWriter,
+                  commentContents : commentContents,
+                  boardId : boardId},
+            dataType: "json",
+            success: function (comment){
+                commentWriter.innerHTML= comment.commentWriter;
+                commentContents.innerHTML = comment.commentContents;
+            },
+            error: function (){}
+
+
+      });
     }
 </script>
 </html>

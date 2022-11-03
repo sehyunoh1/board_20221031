@@ -27,7 +27,7 @@ public class BoardRepository {
     public BoardDTO findbyId(Long boardId) {
         BoardDTO boardDTO = sql.selectOne("Board.findbyId", boardId);
         if (boardDTO.getFileAttached() == 1){
-            return sql.selectOne("Board.fingbyIdFile", boardId);
+            return sql.selectOne("Board.findbyIdFile", boardId);
     } else {
             return boardDTO;
         }
