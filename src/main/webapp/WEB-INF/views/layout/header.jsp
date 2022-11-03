@@ -7,6 +7,7 @@
 <html>
 <head>
   <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body>
 <header class="p-3 text-bg-dark">
@@ -21,20 +22,22 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
                 <li><a href="/board/save" class="nav-link px-2 text-white">글작성</a></li>
-                <li><a href="/board/" class="nav-link px-2 text-white">글목록</a></li>
-<%--                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>--%>
-<%--                <li><a href="#" class="nav-link px-2 text-white">About</a></li>--%>
-<%--                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>--%>
-<%--                <li><a href="#" class="nav-link px-2 text-white">About</a></li>--%>
+                <li><a href="/board/paging" class="nav-link px-2 text-white">글목록</a></li>
 </ul>
 
-<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-  <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-         aria-label="Search">
+<form action="/board/search" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+  <div class="input-group">
+    <select name="type" class="form-select">
+      <option value="boardTitle" selected>제목</option>
+      <option value="boardWriter">작성자</option>
+    </select>
+    <input type="search" name ="q" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+           aria-label="Search">
+    <button class="btn btn-outline-light"><i class="bi bi-search"></i></button>
+  </div>
 </form>
 
 <div class="text-end">
-
   <c:choose>
     <c:when test="${sessionScope.loginEmail != null}">
       <span>${sessionScope.loginEmail}님</span>
