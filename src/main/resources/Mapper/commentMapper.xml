@@ -8,6 +8,9 @@
       insert into comment_table(commentWriter,commentContents,boardId)
         values (#{commentWriter},#{commentContents},#{boardId})
     </insert>
+    <select id="saveList" parameterType="Long" resultType="comment">
+        select * from comment_table where boardId=#{boardId} order by commentId desc;
+    </select>
 </mapper>
 
 

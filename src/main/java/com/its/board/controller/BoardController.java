@@ -2,9 +2,11 @@ package com.its.board.controller;
 
 import com.google.protobuf.RpcUtil;
 import com.its.board.DTO.BoardDTO;
+import com.its.board.DTO.CommentDTO;
 import com.its.board.DTO.PageDTO;
 import com.its.board.Service.BoardService;
 import com.its.board.Repository.BoardRepository;
+import com.its.board.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ import java.util.List;
 public class BoardController {
    @Autowired
     private BoardService boardService;
+   @Autowired
+   private CommentService commentService;
 
     @GetMapping("/save")
     // @RequestMapping(value="/save",method=RequestMethod.POST)
@@ -56,6 +60,8 @@ public class BoardController {
         model.addAttribute("board",boardDTO);
         model.addAttribute("page",page);
         System.out.println("조회: boardDTO = " + boardDTO);
+       List<CommentDTO> commentDTOList= commentService.saveList(boardId);
+       model.addAttribute("commentList",commentDTOList);
         return "boardDetail";
     }
     @GetMapping("/deleteCheck")

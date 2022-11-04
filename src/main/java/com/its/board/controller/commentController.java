@@ -6,10 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import com.its.board.DTO.CommentDTO;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Service
 @Controller
@@ -19,14 +18,14 @@ public class commentController {
     private CommentService commentService;
 
     @PostMapping("/save")
-    public String save(@ModelAttribute CommentDTO commentDTO, Model model) {
-        System.out.println(commentDTO);
-        boolean result = commentService.save(commentDTO);
-        model.addAttribute("comment",commentDTO);
-        if (result) {
-            return "redirect:/board/board?boardId=" + commentDTO.getBoardId();
-        } else {
-            return "boardDetail";
-        }
+    public @ResponseBody List<CommentDTO> save(@ModelAttribute CommentDTO commentDTO) {
+      boolean commentResult=  commentService.save(commentDTO);
+      List<CommentDTO> commentList = commentService.saveList(commentDTO.getBoardId());
+        System.out.println("commentList = " + commentList);
+      if(commentResult) {
+          return commentList;
+      }else{
+          return null;
+      }
     }
 }
